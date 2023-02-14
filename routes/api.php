@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\StudentController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +15,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
-});
+Route::post('register', [StudentController::class, 'postRegister']);
+Route::post('login', [StudentController::class, 'postLogin']);
+Route::post('update-profile', [StudentController::class, 'postUpdateProfile']);
+Route::post('like', [StudentController::class, 'postLike']);
+Route::get('get-list-friends', [StudentController::class, 'getListFriend']);
