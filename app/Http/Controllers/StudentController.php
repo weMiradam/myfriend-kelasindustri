@@ -104,10 +104,10 @@ class StudentController extends Controller
     }
 
     public function postLike(Request $request) {
-        $find = StudentLike::where(
-            ['users_id' => $request->get('users_id')],
-            ['user_id_like' => $request->get('user_id_i_like')]
-        )->first();
+        $find = DB::table('student_like')
+        ->where('users_id',$request->get('users_id'))
+        ->where('user_id_like',$request->get('user_id_i_like'))
+        ->first();
 
         $save = new StudentLike();
         if ($find) {
@@ -143,6 +143,7 @@ class StudentController extends Controller
     public function getListFriend(Request $request) {
         $site = asset('');
         $list = Student::query()
+            ->where('student.id','!=',$request->get('users_id'))
             ->leftjoin(
                 DB::raw("(SELECT student_like.user_id_like,count(student_like.id) as total_like
                                 FROM student_like where is_like = 1 GROUP BY student_like.user_id_like) as total_like"),
