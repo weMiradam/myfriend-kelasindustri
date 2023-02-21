@@ -86,8 +86,7 @@ class StudentController extends Controller
         if ($request->get('school')) {
             $new->school = $request->get('school');
         }
-
-        if ($request->hasFile('photo')) {
+        if ($request->photo) {
             $filename = $this->getFileName($request->photo);
             $request->photo->move(base_path('public'), $filename);
             $new->photo = $filename;
@@ -96,7 +95,6 @@ class StudentController extends Controller
             $new->description = $request->get('description');
         }
         $new->save();
-
         $new->photo = ($new->photo?asset($new->photo):null);
 
         unset($new->password,$new->created_at,$new->updated_at);
