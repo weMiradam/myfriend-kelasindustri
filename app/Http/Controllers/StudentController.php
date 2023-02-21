@@ -52,7 +52,7 @@ class StudentController extends Controller
             if (Hash::check($request->get('password'),$student->password)) {
                 $student->photo = ($student->photo?asset($student->photo):null);
                 unset($student->password,$student->created_at,$student->updated_at);
-                return Api::restSuccess("Berhasil Mendaftar",$student);
+                return Api::restSuccess("Berhasil Login",$student);
             } else{
                 return Api::restError('Password tidak sesuai');
             }
