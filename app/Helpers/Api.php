@@ -12,12 +12,12 @@ class Api {
         return response()->json($res);
     }
 
-    public static function restError($message,$data = false) {
+    public static function restError($message,$data = false,$errorType=false) {
         $res['status'] = 400;
         $res['message'] = $message;
         if ($data) {
             $res['data'] = $data;
         }
-        return response()->json($res);
+        return response()->json($res,$errorType);
     }
 }

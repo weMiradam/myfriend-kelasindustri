@@ -57,7 +57,7 @@ class StudentController extends Controller
                 return Api::restError('Password tidak sesuai');
             }
         }
-        return Api::restError('User Not found');
+        return Api::restError('User Not found','',400);
     }
 
     protected function getFileName($file)
