@@ -18,6 +18,10 @@ class Api {
         if ($data) {
             $res['data'] = $data;
         }
-        return response()->json($res,$errorType);
+        if ($errorType) {
+            return response()->json($res,$errorType);
+        }else{
+            return response()->json($res);
+        }
     }
 }
