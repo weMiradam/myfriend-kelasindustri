@@ -54,7 +54,7 @@ class StudentController extends Controller
                 unset($student->password,$student->created_at,$student->updated_at);
                 return Api::restSuccess("Berhasil Login",$student);
             } else{
-                return Api::restError('Password tidak sesuai');
+                return Api::restError('Password tidak sesuai','',400);
             }
         }
         return Api::restError('User Not found','',400);
