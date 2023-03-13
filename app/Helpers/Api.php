@@ -21,7 +21,7 @@ class Api {
         if ($errorType) {
             return response()->json($res,$errorType);
         }else{
-            return response()->json($res);
+            return response()->json($res,400);
         }
     }
 }
