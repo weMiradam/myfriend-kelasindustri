@@ -16,6 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::post('register', [StudentController::class, 'postRegister']);
+Route::post('create-notes', [StudentController::class, 'postNote']);
+Route::post('update-notes', [StudentController::class, 'postUpdateNote']);
+Route::get('delete-notes', [StudentController::class, 'getDeleteNotes']);
+Route::get('list-notes', [StudentController::class, 'getListNotes']);
 Route::post('login', [StudentController::class, 'postLogin']);
 Route::post('update-profile', [StudentController::class, 'postUpdateProfile']);
 Route::post('like', [StudentController::class, 'postLike']);

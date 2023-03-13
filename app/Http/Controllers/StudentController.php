@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Helpers\Api;
+use App\Models\notes;
 use App\Models\Student;
 use App\Models\StudentLike;
 use Illuminate\Http\Request;
@@ -160,5 +161,36 @@ class StudentController extends Controller
         }
 
         return Api::restSuccess("OK",$list);
+    }
+
+    public function postNote(Request $request) {
+        $new = new notes();
+        $new->users_id = $request->get('users_id');
+        $new->title = $request->get('title');
+        $new->content = $request->get('content');
+        $new->save();
+
+        return Api::restSuccess("Berhasil Membuat",$new);
+    }
+    public function postUpdateNote(Request $request) {
+        $new = notes::find($request->get('id'));
+        $new->title = $request->get('title');
+        $new->content = $request->get('content');
+        $new->save();
+
+        return Api::restSuccess("Berhasil Mengupdate",$new);
+    }
+
+    public function getDeleteNotes(Request $request) {
+        $new = notes::find($request->get('id'));
+        $new->delete();
+
+        return Api::restSuccess("Berhasil Mengupdate");
+    }
+
+    public function getListNotes(Request $request) {
+        $new = notes::where('users_id',$request->get('users_id'))->get();
+
+        return Api::restSuccess("Berhasil",$new);
     }
 }
