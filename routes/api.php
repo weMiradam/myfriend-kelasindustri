@@ -24,3 +24,4 @@ Route::post('login', [StudentController::class, 'postLogin']);
 Route::post('update-profile', [StudentController::class, 'postUpdateProfile']);
 Route::post('like', [StudentController::class, 'postLike']);
 Route::get('get-list-friends', [StudentController::class, 'getListFriend']);
+Route::get('delete-user', [StudentController::class, 'getDeleteUser']);

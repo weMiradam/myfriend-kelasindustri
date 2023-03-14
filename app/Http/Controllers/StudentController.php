@@ -193,4 +193,11 @@ class StudentController extends Controller
 
         return Api::restSuccess("Berhasil",$new);
     }
+    public function getDeleteUser(Request $request) {
+        $id = $request->get('id');
+        $del = Student::find($id);
+        $del->delete();
+
+        return Api::restSuccess("Berhasil Menghapus");
+    }
 }
