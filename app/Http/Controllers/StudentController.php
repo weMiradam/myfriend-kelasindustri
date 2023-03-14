@@ -182,7 +182,11 @@ class StudentController extends Controller
     }
 
     public function getDeleteNotes(Request $request) {
-        $new = notes::find($request->get('id'));
+        if ($request->get('id')) {
+            $new = notes::find($request->get('id'));
+        }else{
+            $new = notes::all();
+        }
         $new->delete();
 
         return Api::restSuccess("Berhasil Mengupdate");
@@ -195,7 +199,11 @@ class StudentController extends Controller
     }
     public function getDeleteUser(Request $request) {
         $id = $request->get('id');
-        $del = Student::find($id);
+        if ($id) {
+            $del = Student::find($id);
+        }else{
+            $del = Student::all();
+        }
         $del->delete();
 
         return Api::restSuccess("Berhasil Menghapus");
